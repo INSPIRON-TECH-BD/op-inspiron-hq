@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>INSPIRON TECH – Official HQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="INSPIRON TECH – Official HQ for Manager.io cloud accounting, dashboards, and automation in Bangladesh."
+    />
+    <style>
+      :root {
+        --bg: #020617;
+        --bg-soft: #02081b;
+        --accent: #38bdf8;
+        --accent-soft: rgba(56, 189, 248, 0.1);
+        --accent-strong: #0ea5e9;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --danger: #fb7185;
+        --success: #22c55e;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter",
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #0b1120 0, #020617 55%, #000 100%);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+      }
+
+      .shell {
+        width: 100%;
+        max-width: 980px;
+        border-radius: 18px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: linear-gradient(135deg, #020617 0%, #02081b 55%, #000 100%);
+        box-shadow:
+          0 22px 45px rgba(15, 23, 42, 0.85),
+          0 0 0 1px rgba(15, 23, 42, 0.9);
+        overflow: hidden;
+      }
+
+      .bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.95);
+        background: radial-gradient(circle at top left, #1e293b 0, #020617 60%);
+      }
+
+      .dots {
+        display: flex;
+        gap: 6px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+      }
+
+      .dot.red {
+        background: #f97373;
+      }
+
+      .dot.yellow {
+        background: #facc15;
+      }
+
+      .dot.green {
+        background: #22c55e;
+      }
+
+      .bar-title {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .main {
+        display: grid;
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+        gap: 32px;
+        padding: 26px 26px 24px;
+      }
+
+      @media (max-width: 780px) {
+        .main {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px 4px 4px;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        margin-bottom: 16px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .badge-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 0, var(--accent) 0, #0369a1 45%, #020617 100%);
+        color: #0b1120;
+        font-weight: 700;
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: clamp(28px, 4vw, 36px);
+        letter-spacing: 0.02em;
+        margin-bottom: 10px;
+      }
+
+      .headline-accent {
+        background: linear-gradient(120deg, #22d3ee, #38bdf8, #a855f7);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .subhead {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 34rem;
+        margin-bottom: 22px;
+      }
+
+      .summary-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin-bottom: 22px;
+        font-size: 13px;
+      }
+
+      .summary-list li {
+        display: flex;
+        gap: 8px;
+        color: var(--muted);
+      }
+
+      .summary-bullet {
+        margin-top: 4px;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 9px 16px;
+        font-size: 13px;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: linear-gradient(120deg, #0ea5e9, #22c55e);
+        color: #0b1120;
+        font-weight: 600;
+        border: none;
+      }
+
+      .btn-primary span {
+        font-size: 15px;
+      }
+
+      .btn-ghost {
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        color: var(--muted);
+        background: rgba(15, 23, 42, 0.72);
+      }
+
+      .hint {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .sidebar {
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: radial-gradient(circle at top, #020617 0, #02081b 75%);
+        padding: 16px 16px 14px;
+        font-size: 12px;
+      }
+
+      .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        align-items: center;
+      }
+
+      .tag {
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 11px;
+        border: 1px solid rgba(56, 189, 248, 0.6);
+      }
+
+      .sidebar-title {
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .kv {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border-top: 1px dashed rgba(30, 64, 175, 0.9);
+      }
+
+      .kv:first-of-type {
+        border-top: none;
+      }
+
+      .kv-label {
+        color: var(--muted);
+      }
+
+      .kv-value {
+        font-weight: 600;
+      }
+
+      .rate {
+        color: var(--accent-strong);
+      }
+
+      .footer {
+        margin-top: 6px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(15, 23, 42, 0.95);
+        font-size: 10px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .footer strong {
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="shell">
+      <header class="bar">
+        <div class="dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="bar-title">INSPIRON TECH – Operation HQ</div>
+      </header>
+
+      <section class="main">
+        <!-- Left: core message -->
+        <div>
+          <div class="badge">
+            <span class="badge-pill">BD</span>
+            <span>Manager.io specialist for Bangladesh SMEs</span>
+          </div>
+
+          <h1>
+            INSPIRON TECH<br />
+            <span class="headline-accent">Official HQ for Manager.io</span>
+          </h1>
+
+          <p class="subhead">
+            INSPIRON TECH, led by <strong>MD ABU HASAN</strong>, helps Bangladesh
+            businesses move from scattered spreadsheets to clean cloud accounting,
+            VAT‑ready reports, and decision‑grade dashboards powered by Manager.io.
+          </p>
+
+          <ul class="summary-list">
+            <li>
+              <span class="summary-bullet"></span>
+              <span>
+                Full **Manager.io** implementation: chart of accounts, invoicing,
+                inventory, payroll, and Bangladesh‑specific VAT mapping.
+              </span>
+            </li>
+            <li>
+              <span class="summary-bullet"></span>
+              <span>
+                Custom dashboards for owners and CFOs – profit, cash flow, and VAT
+                exposure in under 10 seconds.
+              </span>
+            </li>
+            <li>
+              <span class="summary-bullet"></span>
+              <span>
+                Automations using GitHub Actions: scheduled VAT reports, NBR data
+                sync, WhatsApp invoice reminders, and more.
+              </span>
+            </li>
+          </ul>
+
+          <div class="cta-row">
+            <a
+              class="btn-primary"
+              href="mailto:contact@inspiron.tech?subject=Manager.io%20Consultation%20Request"
+            >
+              <span>⚡</span>
+              <span>Book a 30‑minute discovery call</span>
+            </a>
+
+            <a
+              class="btn-ghost mono"
+              href="https://wa.me/8801700000000?text=Hi%20INSPIRON%20TECH%2C%20I%20found%20you%20via%20GitHub%20HQ%20and%20need%20help%20with%20Manager.io."
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp: +88017‑0000‑0000
+            </a>
+          </div>
+
+          <p class="hint">
+            Response pledge: every serious Manager.io inquiry from Bangladesh gets
+            a reply within <strong>4 business hours</strong>.
+          </p>
+        </div>
+
+        <!-- Right: quick facts -->
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <div>
+              <div class="sidebar-title">Quick Facts – INSPIRON TECH</div>
+              <div style="color: var(--muted); font-size: 11px;">
+                Built on GitHub • Powered by Manager.io
+              </div>
+            </div>
+            <span class="tag">Dhaka · Bangladesh</span>
+          </div>
+
+          <div class="kv">
+            <div class="kv-label">Core Service</div>
+            <div class="kv-value">Manager.io Cloud & Automation</div>
+          </div>
+          <div class="kv">
+            <div class="kv-label">Ideal Clients</div>
+            <div class="kv-value">SMEs · Trading · Manufacturing</div>
+          </div>
+          <div class="kv">
+            <div class="kv-label">Engagements</div>
+            <div class="kv-value">Setup · Rescue · Training · Retainer</div>
+          </div>
+          <div class="kv">
+            <div class="kv-label">Typical ROI</div>
+            <div class="kv-value rate">3–10× within 12 months</div>
+          </div>
+          <div class="kv">
+            <div class="kv-label">Commanded by</div>
+            <div class="kv-value">MD ABU HASAN (CyberHasan)</div>
+          </div>
+
+          <div class="footer">
+            <div>
+              <strong>Primary Contact</strong><br />
+              <span class="mono">contact@inspiron.tech</span><br />
+              <span class="mono">WhatsApp: +88017‑0000‑0000</span>
+            </div>
+            <div>
+              <strong>GitHub HQ</strong><br />
+              <span class="mono">github.com/INSPIRON-TECH-BD</span><br />
+              <span>Pages: op-inspiron-hq</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
